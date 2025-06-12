@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alumni Profile Form</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #f6d365, #fda085);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 550px;
+      border-radius: 15px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .form-header h2 {
+      margin: 0;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .home-link {
+      background-color: #eee;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .home-link:hover {
+      background-color: #ddd;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      color: #222;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px;
+      width: 100%;
+      background-color: #ff7e5f;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #eb5e42;
+    }
+  </style>
+</head>
+<body>
+
+<form id="profileForm">
+  <div class="form-header">
+    <h2>Alumni Profile Form</h2>
+    <a href="index.html" class="home-link">Go to Home Page</a>
+  </div>
+
+  <label>Name:
+    <input type="text" name="name" pattern="[A-Za-z\s]+" required>
+  </label>
+
+  <label>Batch (e.g. 2018-2022):
+    <input type="text" name="batch" pattern="\d{4}-\d{4}" required>
+  </label>
+
+  <label>Gender:
+    <select name="gender" required>
+      <option value="">--Select--</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+  </label>
+
+  <label>Enrollment No. (11 digits):
+    <input type="text" name="enrollment" pattern="\d{11}" required>
+  </label>
+
+  <label>Father's Name:
+    <input type="text" name="father_name" pattern="[A-Za-z\s]+" required>
+  </label>
+
+  <label>Mother's Name:
+    <input type="text" name="mother_name" pattern="[A-Za-z\s]+" required>
+  </label>
+
+  <label>Date of Birth (dd-mm-yyyy):
+    <input type="text" name="dob" placeholder="dd-mm-yyyy" pattern="\d{2}-\d{2}-\d{4}" required>
+  </label>
+
+  <label>Current Company Name:
+    <input type="text" name="company_placed" pattern="[A-Za-z0-9\s]+" required>
+  </label>
+
+  <label>Passing Year (yyyy):
+    <input type="text" name="passing_year" pattern="\d{4}" required>
+  </label>
+
+  <label>Package (Optional):
+    <input type="text" name="package" pattern="[A-Za-z0-9\s]*">
+  </label>
+
+  <label>LinkedIn Profile URL:
+    <input type="url" name="linkedin" placeholder="https://linkedin.com/in/your-profile" required>
+  </label>
+
+  <button type="submit">Submit Form</button>
+</form>
+
+<script>
+  document.getElementById("profileForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const form = this;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    // Convert DOB from dd-mm-yyyy to yyyy-mm-dd
+    const dobParts = data.dob.split("-");
+    if (dobParts.length === 3) {
+      data.dob = `${dobParts[2]}-${dobParts[1]}-${dobParts[0]}`;
+    }
+
+    fetch("http://localhost:3000/addProfile", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(response => {
+      alert(response.message || "Profile added successfully!");
+      form.reset();         // ✅ Clear form
+      location.reload();    // ✅ Refresh page (optional)
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("Error submitting form. Check console for details.");
+    });
+  });
+</script>
+
+</body>
+</html>

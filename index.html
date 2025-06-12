@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bharati Vidyapeeth's Institute</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #f8e8e8;
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+      }
+
+      .page-container {
+        background-color: #fff;
+        padding-bottom: 100px;
+      }
+
+      /* Header */
+      .header-main {
+        background-color: #fff;
+        display: flex;
+        width: 100%;
+        padding: 20px 40px;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .institute-logo {
+        width: 180px;
+        object-fit: contain;
+        max-width: 100%;
+      }
+
+      .institute-name {
+        color: #000;
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        flex-grow: 1;
+      }
+
+      .social-icons {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .social-icon {
+        width: 30px;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .social-icon:hover {
+        transform: scale(1.1);
+      }
+
+      /* Navigation Bar */
+      .navigation-bar {
+        background-color: #000;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-items {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-item {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: color 0.3s ease-in-out;
+      }
+
+      .nav-item:hover {
+        color: #ccc;
+      }
+
+      .nav-icon {
+        width: 24px;
+      }
+
+      /* Dropdown */
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 120px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .dropdown-content a {
+        color: white;
+        padding: 10px;
+        display: block;
+        text-decoration: none;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #575757;
+      }
+
+      .dropdown:hover .dropdown-content,
+      .dropdown:focus-within .dropdown-content {
+        display: block;
+      }
+
+      /* Login */
+      .login-text {
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        text-align: left;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+        
+      }
+
+      .login-text:hover {
+        color: #ccc;
+      }
+
+      /* Hamburger Menu */
+      .hamburger {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+      }
+
+      @media (max-width: 768px) {
+        .nav-items {
+          display: none;
+          flex-direction: column;
+          background: #222;
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 100%;
+          text-align: center;
+          padding: 10px 0;
+        }
+
+        .nav-items.show {
+          display: flex;
+        }
+
+        .hamburger {
+          display: block;
+        }
+      }
+
+      /* Alumni Section */
+      .alumni-section {
+        background-color: #fff;
+        text-align: center;
+        padding: 100px 20px;
+      }
+
+      .alumni-heading {
+        color: #000;
+        font-weight: 1000;
+        font-size: 70px;
+      }
+
+      @media (max-width: 991px) {
+        .alumni-heading {
+          font-size: 40px;
+        }
+      }
+
+      .search-container {
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 40px;
+    font: 600 32px Poppins, sans-serif;
+    color: #fff;
+  }
+  @media (max-width: 991px) {
+    .search-container {
+      padding: 80px 20px;
+    }
+  }
+  .search-form {
+    border-radius: 20px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    width: 500px;
+    max-width: 100%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  @media (max-width: 991px) {
+    .search-form {
+      padding: 30px;
+    }
+  }
+  .input-field {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid #000;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+  .batch-label {
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+  }
+  .submit-button {
+    border-radius: 20px;
+    background-color: #29d250;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 25px;
+    border: none;
+    cursor: pointer;
+    margin-top: 40px;
+    transition: background 0.3s ease-in-out;
+  }
+  .submit-button:hover {
+    background-color: #23b244;
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .alumni-placement {
+      background-color: #f8f9fa;
+      padding: 40px 20px;
+      text-align: center;
+    }
+  
+    .placement-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+  
+    .placement-image {
+      max-width: 100%;
+      border-radius: 15px;
+    }
+  
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+  
+    .logo-image {
+      max-width: 120px;
+    }
+  
+    .footer {
+      background: #343a40;
+      color: white;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+  
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin-right: 15px;
+      transition: 0.3s;
+    }
+  
+    .social-icons a:hover {
+      color: #ffc107;
+    }
+  
+    @media (max-width: 768px) {
+      .placement-title {
+        font-size: 2rem;
+      }
+      .footer {
+        flex-direction: column;
+        text-align: center;
+      }
+      .social-icons {
+        margin-top: 10px;
+      }
+    }
+    .search-box {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 20px;
+  padding: 4px 10px;
+  margin: 0 20px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  width: 160px;
+}
+
+.search-box button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+.search-box input:focus {
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
+}
+
+
+
+/* Ask ChatGPT Section */
+.ask-chatgpt-section {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.ask-chatgpt-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .ask-chatgpt-title {
+    font-size: 32px;
+  }
+}
+
+.chat-form {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.chat-form input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  margin-bottom: 20px;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chat-form button {
+  background-color: #29d250;
+  color: #fff;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.chat-form button:hover {
+  background-color: #23b244;
+}
+
+.chat-response-label {
+  font-weight: bold;
+  font-size: 20px;
+  color: #000;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.chat-response {
+  max-width: 600px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  color: #333;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  white-space: pre-wrap;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+
+
+    
+
+     
+    </style>
+  </head>
+  <body>
+    <div class="page-container">
+      <header>
+        <div class="header-main">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/79ef4a1920a9395eb8e9cc8da1714711178a735f?apiKey=7bc113ea95dc44c0941115082d5d35c2"
+            alt="Institute Logo"
+            class="institute-logo"
+            loading="lazy"
+          />
+          <h1 class="institute-name">
+            Bharati Vidyapeeth's Institute Of Computer<br> Application and
+            Management (BVICAM)
+          </h1>
+          <div class="social-icons">
+            <a href="#"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c93d5af9c0319f8158b3b02866a784cc2f5e7fb3?apiKey=7bc113ea95dc44c0941115082d5d35c2" alt="Facebook" class="social-icon" /></a>
+            <a href="#"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a24bcfe39ab1a2d0bce34baf2024090d165c79d5?apiKey=7bc113ea95dc44c0941115082d5d35c2" alt="Twitter" class="social-icon" /></a>
+            <a href="#"><img src="http://pluspng.com/img-png/instagram-icon-png-instagram-icon-1600.png" alt="Instagram" class="social-icon" /></a>
+          </div>
+        </div>
+        <nav class="navigation-bar">
+          <span class="hamburger" onclick="toggleMenu()">☰</span>
+          <div class="nav-items">
+            <a href="#" class="nav-item">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2931abda3f7219689ea4c843eac4218ebfecd838?apiKey=7bc113ea95dc44c0941115082d5d35c2" alt="Home" class="nav-icon" />
+              Home
+            </a>
+            <div class="nav-item dropdown">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/606fb284144f99a463f5cff303e992f1b3aee2f6?apiKey=7bc113ea95dc44c0941115082d5d35c2" alt="Batch" class="nav-icon" />
+              Batch
+              <div class="dropdown-content">
+                
+                <a href="batch.html">Batch 2024-2026</a>
+                <a href="batch2.html">Batch 2023-2025</a>
+                <a href="batch3.html">Batch 2022-2024</a>
+                <a href="batch4.html">Batch 2021-2023</a>
+              </div>
+            </div>
+            <a href="profile.html" class="nav-item">
+              <img src="http://www.pngall.com/wp-content/uploads/5/Profile.png" alt="Profile" class="nav-icon" />
+              Register
+            </a>
+          </div>
+          <div style="display: flex; gap: 15px; align-items: center;">
+            <a href="login.html" class="login-text">Alumni</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfx0ht6-OzE6_0VDfDudFKAYHT5_k2i5RzpzO1tq1CziPbrCA/viewform?usp=header" class="login-text" target="_blank">Feedback</a>
+          </div>
+          <!-- Search Bar -->
+  <div class="search-box">
+    <input type="text" placeholder="Search...">
+    <button type="submit">🔍</button>
+  </div>
+        </nav>
+      </header>
+    </div>
+    <section class="alumni-section">
+      <h1 class="alumni-heading">Let's Find Our Alumni's</h1>
+    </section>
+
+    <div class="search-container">
+      <form class="search-form" id="searchForm">
+          <label for="name-input" class="batch-label">Name</label>
+          <input type="text" id="name-input" class="input-field" placeholder="Enter name" required />
+  
+          <label for="batch-input" class="batch-label">Batch</label>
+          <input type="text" id="batch-input" class="input-field" placeholder="Enter batch year" required />
+  
+          <button type="submit" class="submit-button">Search</button>
+      </form>
+      <div id="searchResult"></div>
+  </div>
+      <section class="alumni-placement">
+        <div class="placement-content">
+          <div class="placement-header">
+            <div class="header-text">
+              <h2 class="placement-title">Top Companies Where Our Alumni's Are Placed</h2>
+            </div>
+            <br>
+            <br>
+            <div class="header-image">
+              <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/7bc113ea95dc44c0941115082d5d35c2/30cef439ad87e7eefb34d8fc3e7cf94c19cad11e?apiKey=7bc113ea95dc44c0941115082d5d35c2&" class="placement-image" alt="Collage of top companies where alumni are placed" />
+            </div>
+            
+            <section class="ask-chatgpt-section">
+              <h1 class="ask-chatgpt-title">Ask ChatGPT</h1>
+              <form id="chatForm" class="chat-form">
+                <input type="text" id="prompt" placeholder="Type your question…" required />
+                <button type="submit">Send</button>
+              </form>
+              <p class="chat-response-label">Response:</p>
+              <div id="response" class="chat-response"></div>
+            </section>
+            
+
+  </script>
+</body>
+</html>
+
+
+<script>
+  function toggleMenu() {
+    document.querySelector(".nav-items").classList.toggle("show");
+  }
+
+  // 🔍 Handle Profile Search
+  document.getElementById('searchForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    let name = document.getElementById('name-input').value.trim();
+    let batch = document.getElementById('batch-input').value.trim();
+
+    if (!name || !batch) {
+      document.getElementById('searchResult').innerHTML = '<p style="color:red;">Please enter both name and batch.</p>';
+      return;
+    }
+
+    fetch(`http://localhost:3000/searchProfile?name=${name}&batch=${batch}`)
+      .then(response => response.json())
+      .then(data => {
+        let resultDiv = document.getElementById('searchResult');
+        if (data.message) {
+          resultDiv.innerHTML = `<p style="color:red;">${data.message}</p>`;
+        } else {
+          resultDiv.innerHTML = `
+            <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
+              <h3 style="color: #000;">Profile Found</h3>
+              <p><strong>Name:</strong> ${data.name}</p>
+              <p><strong>Batch:</strong> ${data.batch}</p>
+              <p><strong>LinkedIn:</strong> <a href="${data.linkedin}" target="_blank">${data.linkedin}</a></p>
+            </div>
+          `;
+        }
+      })
+      .catch(error => console.error('Error:', error));
+  });
+
+  // ➕ Handle Add Profile
+  document.getElementById('submitBtn').addEventListener('click', () => {
+    const data = {
+      name: document.getElementById('name').value,
+      batch: document.getElementById('batch').value,
+      passing_year: document.getElementById('passingYear').value,
+      enrollment: document.getElementById('enrollment').value,
+      gender: document.getElementById('gender').value,
+      linkedin: document.getElementById('linkedin').value,
+      placed: document.getElementById('placed').value,
+      package: document.getElementById('package').value,
+      company: document.getElementById('company').value,
+      position: document.getElementById('position').value
+    };
+
+    fetch('http://localhost:3000/addProfile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(response => alert(response.message))
+    .catch(err => console.error('Error:', err));
+  });
+
+  // 💬 Handle Chat Form
+  document.getElementById('chatForm').addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const prompt = document.getElementById('prompt').value;
+    const res = await fetch('/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+
+    if (!res.ok) {
+      document.getElementById('response').innerText = 'Error fetching response.';
+      return;
+    }
+
+    const { reply } = await res.json();
+    document.getElementById('response').innerText = reply;
+  });
+</script>
